@@ -1,2 +1,14 @@
 {%extends 'base.html'%} {% block content %} {{block.super}}
-<h1>New Posts</h1> {% endblock %}
+<div class="container">
+    <div class="row">
+        {% for image in images %}
+
+        <div id="images" class="col-md-4">
+            <img style="margin-top: 20px;margin-bottom:0px; size: 20rem;" class="img-fluid" src="{{ image.image.url }}" alt="{{ image.image_name }}" data-toggle="modal" data-target="#modal{{image.id}}">
+
+        </div>
+
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
