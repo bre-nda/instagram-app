@@ -36,6 +36,9 @@ class Profile(models.Model):
     bio = models.TextField()
     user = models.OneToOneField(User, on_delete=models.CASCADE, default='')
 
+    def __str__(self):
+        return self.user.username
+
     def update(self):
         self.save()
 
@@ -49,6 +52,8 @@ class Profile(models.Model):
     def get_profile_by_user(cls, user):
         profile = cls.objects.filter(user=user)
         return profile
+
+    
 
 class Like(models.Model):
     image = models.ForeignKey(Image, on_delete=models.CASCADE)
