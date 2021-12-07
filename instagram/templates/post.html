@@ -20,9 +20,7 @@
                                 <p class="card-text">
                                     {{image.caption }}
                                 </p>
-                                <!-- <p class="card-text"><small class="text-muted">Last updated
-                                        {{post.posted_on|timesince}} ago
-                                    </small></p> -->
+
                                 {% if comments %} {% for comment in comments %}
                                 <div class="d-flex justify-content-start card mb-3">
                                     <div class="img-box">
@@ -30,10 +28,7 @@
                                     </div>
                                     <div class="m-2">
                                         <h6>{{ comment.user.username }}</h6>
-                                        <!-- <h6> <i class="fa fa-clock"></i> <span>
-                                                {{ comment.comment_date }}
-                                            </span>
-                                        </h6> -->
+
                                     </div>
                                     <p class="m-2">
                                         {{comment.comment }}
@@ -101,8 +96,6 @@
                                 <p class="text-muted">View All {{image.comments }} Comments
                                 </p>
                             </a>
-                            <!-- <p class="text-muted">{{image.posted_on | timesince }}</p> -->
-
                         </div>
                     </div>
                     {% endfor %}
