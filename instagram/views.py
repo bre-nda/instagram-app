@@ -11,8 +11,8 @@ import cloudinary.api
 # Create your views here.
 @login_required(login_url='/accounts/login/')
 def welcome(request):
-    images = Image.objects.all()
-    return render(request, 'home.html', {'images': images})
+    image = Image.objects.all()
+    return render(request, 'home.html', {'image': image})
 
 
 @login_required(login_url='/accounts/login/')
