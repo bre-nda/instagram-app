@@ -36,7 +36,7 @@ For support and contact details;
 Call:0743495599
 Email at brendaandeso4@gmail.com
 ## License
-(https://github.com/bre-nda/instagram-app/blob/master/licence)
+(https://github.com/bre-nda/instagram-app/blob/master/Licence)
 
 ## Copyright
 Copyright (c) {2021} Brenda Andeso
