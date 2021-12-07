@@ -8,7 +8,6 @@ class Image(models.Model):
     caption = models.TextField()
     profile = models.ForeignKey(User, on_delete=models.CASCADE, default='')
     likes = models.IntegerField(default=0)
-    # liked= models.ManyToManyField(User,default=None,blank=True,related_name='liked')
     comments = models.IntegerField(default=0)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='images')
 
@@ -72,14 +71,4 @@ class Comment(models.Model):
     def __str__(self):
         return self.comment
 
-# LIKE_CHOICES={
-#     ('Like','Like'),
-#     ('Unlike','Unlike',)
-# }
-# class Like(models.Model):
-#     image = models.ForeignKey(Image, on_delete=models.CASCADE)
-#     user = models.ForeignKey(User, on_delete=models.CASCADE, default='')
-#     value = models.CharField(choices=LIKE_CHOICES,default='like',max_length=10)
 
-#     def str(self):
-#         return self.value
