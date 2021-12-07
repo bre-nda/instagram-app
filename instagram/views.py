@@ -167,24 +167,5 @@ def user_profile(request, id):
     else:
         return redirect('/')
 
-# def like_image(request):
-#     user = request.user
-#     if request.method == 'POST':
-#         image_id = request.POST.get('image_id')
-#         image_pic =Image.objects.get(id=image_id)
-#         if user in image_pic.liked.all():
-#             image_pic.liked.add(user)
-#         else:
-#             image_pic.liked.add(user)    
-            
-#         like,created =Like.objects.get_or_create(user=user, image_id=image_id)
-#         if not created:
-#             if like.value =='Like':
-#                like.value = 'Unlike'
-#         else:
-#                like.value = 'Like'
-
-#         like.save()       
-#     return redirect('home')
 
 
