@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.http  import HttpResponse
+from django.contrib.auth.decorators import login_required
 
 from instagram.models import Comment, Image, Like, Profile
 import cloudinary
@@ -8,10 +9,13 @@ import cloudinary.uploader
 import cloudinary.api
 
 # Create your views here.
+@login_required(login_url='/accounts/login/')
 def welcome(request):
     images = Image.objects.all()
     return render(request, 'home.html', {'images': images})
 
+
+@login_required(login_url='/accounts/login/')
 def search_results(request):
     if 'search' in request.GET and request.GET['search']:
         search_term = request.GET.get('search').lower()
@@ -23,6 +27,7 @@ def search_results(request):
         message = 'You havent searched for any term'
         return render(request, 'search.html', {'danger': message})
 
+@login_required(login_url='/accounts/login/')
 def profile(request):
     current_user = request.user
     # get images for the current logged in user
@@ -31,6 +36,8 @@ def profile(request):
     profile = Profile.objects.filter(user_id=current_user.id).first()
     return render(request, 'profile.html', {"posts": posts, "profile": profile})
 
+
+@login_required(login_url='/accounts/login/')
 def update_profile(request):
     if request.method == 'POST':
 
@@ -73,6 +80,7 @@ def update_profile(request):
     else:
         return render(request, 'profile.html', {'danger': 'Profile Update Failed'})
 
+@login_required(login_url='/accounts/login/')
 def new_post(request):
     if request.method == 'POST':
         name = request.POST['image_name']
@@ -88,6 +96,7 @@ def new_post(request):
     else:
         return render(request, 'profile.html', {'danger': 'Image Upload Failed'})
 
+@login_required(login_url='/accounts/login/')
 def like_image(request, id):
     likes = Like.objects.filter(post_id=id).first()
     # check if the user has already liked the image
@@ -113,6 +122,7 @@ def like_image(request, id):
         post.save()
         return redirect('/')
 
+@login_required(login_url='/accounts/login/')
 def view_post(request, id):
     image = Image.objects.get(id=id)
     # get related images to the image that is being viewed by the user and order them by the date they were created
@@ -127,6 +137,7 @@ def view_post(request, id):
     else:
         return redirect('/')
 
+@login_required(login_url='/accounts/login/')
 def add_comment(request):
     if request.method == 'POST':
         comment = request.POST['comment']
@@ -141,7 +152,8 @@ def add_comment(request):
         return redirect('/post/' + str(image_id))
     else:
         return redirect('/')
-
+        
+@login_required(login_url='/accounts/login/')
 def user_profile(request, id):
     # check if user exists
     if User.objects.filter(id=id).exists():
@@ -154,5 +166,25 @@ def user_profile(request, id):
         return render(request, 'user-profile.html', {'posts': posts, 'profile': profile, 'user': user})
     else:
         return redirect('/')
+
+# def like_image(request):
+#     user = request.user
+#     if request.method == 'POST':
+#         image_id = request.POST.get('image_id')
+#         image_pic =Image.objects.get(id=image_id)
+#         if user in image_pic.liked.all():
+#             image_pic.liked.add(user)
+#         else:
+#             image_pic.liked.add(user)    
+            
+#         like,created =Like.objects.get_or_create(user=user, image_id=image_id)
+#         if not created:
+#             if like.value =='Like':
+#                like.value = 'Unlike'
+#         else:
+#                like.value = 'Like'
+
+#         like.save()       
+#     return redirect('home')
 
 
