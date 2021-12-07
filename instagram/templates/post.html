@@ -73,35 +73,22 @@
                             <h2>...</h2>
                         </div>
                         <img src="{{ image.image.url }}" class="img-fluid" alt="...">
-                        <div class="card-body">
-                            <div class="card-title">
-                                <div class="d-flex">
-                                    <a class="nav-link active" href="{% url 'like.image' image.id %}">
-                                        <img src="{% static 'icons/heart.svg'%}" alt="" srcset="">
-                                    </a>
-                                    <a class="nav-link active" href="{% url 'single.image' image.id %}">
-                                        <img src="{% static 'icons/message-circle.svg'%}" alt="" srcset="">
-                                    </a>
-                                    <a class="nav-link active" href="{% url 'single.image' image.id %}">
-                                        <img src="{% static 'icons/send.svg'%}" alt="" srcset="">
-                                    </a>
-                                </div>
-
-                            </div>
-                            <p class="fade-item">{{image.likes }} Likes </p>
-                            <h6 class="">{{image.user.username}} {{ image.caption|slice:":20" }}<small><span
+                        <p class="fade-item">{{image.likes }} Likes </p>
+                        <h6 class="">{{image.user.username}} {{ image.caption|slice:":20" }}<small><span
                                         class="text-muted"> <a href="{% url 'single.image' image.id %}">...Read
                                             More</a></span></small> </h6>
-                            <a href="{% url 'single.image' image.id %}">
-                                <p class="text-muted">View All {{image.comments }} Comments
-                                </p>
-                            </a>
-                        </div>
+                        <a href="{% url 'single.image' image.id %}">
+                            <p class="text-muted">View All {{image.comments }} Comments
+                            </p>
+                        </a>
+
+
                     </div>
-                    {% endfor %}
                 </div>
+                {% endfor %}
             </div>
         </div>
+    </div>
     </div>
 </section>
 {% endblock %}
