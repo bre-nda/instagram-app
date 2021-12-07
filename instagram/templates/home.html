@@ -21,9 +21,11 @@
                 <p class="fade-item">{{image.likes }} Likes </p>
                 <h6 class="">{{image.user.username}} {{ image.caption|slice:":20" }}<small><span
                             class="text-muted"> <a href="{% url 'single.image' image.id %}">...Read
-                                More</a></span></small> </h6>
+                                More</a></span>
+                    </small>
+                </h6>
                 <a href="{% url 'single.image' image.id %}">
-                    <p class="text-muted">View All {{image.comments }} Comments
+                    <p class="text-muted">View all {{image.comments }} Comments
                     </p>
                 </a>
             </div>
