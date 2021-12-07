@@ -7,12 +7,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <style>
-    .bg-dark {
-        color: rgb(235, 99, 57);
-    }
-    
     .navbar-brand {
         font-family: fantasy;
+    }
+    
+    .home {
+        height: 2%;
+        width: 2%;
+    }
+    
+    nav {
+        background-color: rgb(112, 105, 105);
+        box-shadow: 2px 2px 15px 2px rgb(243, 155, 140);
     }
 </style>
 
@@ -38,7 +44,38 @@
 
                 </form>
             </div>
+            <!-- <i class="far fa-home homme"></i> -->
+
             <!-- search form end -->
+
+            <!--The search form above-->
+            <div class="col-sm-6 col-md-6">
+                {% if user.is_authenticated %}
+                <ul>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle btn btn-default" data-toggle="dropdown" role="button" aria-expanded="false">Account
+                  <span class="caret"></span>
+              </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <a href="#">Home</a>
+                            </li>
+                            <li>
+                                <a href="/accounts/password/change">Change Password</a>
+                            </li>
+                            <li>
+                                <a href="/logout">Logout</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                {% else %}
+                <li>
+                    <a class='btn btn-default ' href="/accounts/login">Login</a>
+                </li>
+                <i class="fal fa-home-alt"></i> {% endif %}
+            </div>
+
         </div>
     </nav>
 </body>
